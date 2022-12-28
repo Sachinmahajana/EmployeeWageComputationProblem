@@ -1,14 +1,17 @@
-<<<<<<< HEAD
-echo "Welcome to Employee Wage Computation Program!!"
-=======
-echo "Welcome to Employee Wage Computation Program"
-isPresent=1;
-randomCheck=$((RANDOM%2));
+echo "Welcome to Employee wage Computation Program!!"
 
-if [ $isPresent -eq $randomCheck ]
+isPresent=1;
+randomCheck=$((RANDOM%2))
+if [[ $isPresent -eq $randomCheck ]]
+
 then
 echo "Employee is present"
+empRatePerHr=20
+empHrs=8;
+salary=$(($empHrs*$empRatePerHr))
+echo "salary="$salary
 else
 echo "Employee is absent"
+echo "salary="$salary
+
 fi
->>>>>>> UC1-EmployeeAttendance
