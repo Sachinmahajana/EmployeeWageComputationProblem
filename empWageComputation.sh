@@ -1,37 +1,51 @@
-echo "Welcome to Employee wage Computation Program!!"
+echo "Welcome to Employee Wage Computation Program"
+function calculateWorkingHour() {
+	case $1 in
+		0)
+			workingHour=0;
+			;;
 
-isPartTime=1;
-isFullTime=2;
-empHrs=0;
+		1)
+			workingHour=8;
+			;;
+		2)
+			workingHour=4;
+			;;
+	esac;
+	echo $workingHour;
+}
+
+perHourSalary=20;
 totalSalary=0;
 totalWorkingHour=0;
-empRatePerHr=20;
-numWorkingDays=20;
 day=1;
 
-while [[ $day -le 20 && $totalWorkingHour -lt 100 ]]
+
+
+while [[ $day -le 20 && $totalWorkingHour -lt 40 ]]
 do
-
-randomCheck=$((RANDOM%3));
-
-case $randomCheck in $isFullTime)
-                      empHrs=8;;
-		      $isPartTime)
-                      empHrs=4;;
-                      *)
-                      empHrs=0;;
-
-esac
-
-totalWorkingHour=$(($totalWorkingHour+$empHrs))
-
-if [ $totalWorkingHour -gt 100 ]
+	wHour=$(calculateWorkingHour $((RANDOM%3)));
+	totalWorkingHour=$(($totalWorkingHour + $wHour));
+	if [ $totalWorkingHour -gt 40 ]
 	then
-totalWorkingHour=$(($totalWorkingHour+$empHrs))
-break;
-fi
-salary=$(($empRatePerHr*$empHrs))
-totalSalary=$(($totalSalary+$salary))
+		totalWorkingHour=$(($totalWorkingHour - $wHour));
+		break;
+	fi
+	salary=$(($perHourSalary * $wHour));
+	totalSalary=$(($totalSalary + $salary));
+	((day++));
+
+echo "Daily Wage: "${salary[*]}
+echo "Total Wage: "${totalSalary[*]}
+echo "Day: "${day[*]}
+
+n[$day]=${salary[*]}
+tn[$totalWorkingHour]=${totalSalary[*]}
+d[$day]=${day[*]}
 done
 
-echo "Employee has earned $totalSalary $ in a month (Total working Hour :$totalWorkingHour)";
+
+
+echo "Employee has earned $totalSalary $ in a month (Total working Hour : $totalWorkingHour)";
+
+
