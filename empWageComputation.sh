@@ -20,8 +20,6 @@ totalSalary=0;
 totalWorkingHour=0;
 day=1;
 
-
-
 while [[ $day -le 20 && $totalWorkingHour -lt 40 ]]
 do
 	wHour=$(calculateWorkingHour $((RANDOM%3)));
@@ -44,7 +42,8 @@ tn[$totalWorkingHour]=${totalSalary[*]}
 d[$day]=${day[*]}
 done
 
-
+echo "Daily Wage: ["${n[*]}"]"
+echo "Total Wage: ["${tn[*]}"]"
 
 echo "Employee has earned $totalSalary $ in a month (Total working Hour : $totalWorkingHour)";
 
